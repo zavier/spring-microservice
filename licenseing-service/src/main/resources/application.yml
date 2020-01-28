@@ -1,0 +1,6 @@
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info, health, mappings, env, refresh
