@@ -28,4 +28,6 @@ public class License {
 
     @Column(name = "comment")
     private String comment;
+
+    private String organizationName;
 }
