@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/v1/organizations/{organizationId}/licenses")
 public class LicenseServiceController {
@@ -15,6 +17,12 @@ public class LicenseServiceController {
 
     public LicenseServiceController(LicenseService licenseService) {
         this.licenseService = licenseService;
+    }
+
+    @GetMapping("/")
+    public List<License> getLicenseByOrg(@PathVariable("organizationId") String organizationId) {
+        final List<License> licensesByOrg = licenseService.getLicensesByOrg(organizationId);
+        return licensesByOrg;
     }
 
     @GetMapping(value = "/{licenseId}")
