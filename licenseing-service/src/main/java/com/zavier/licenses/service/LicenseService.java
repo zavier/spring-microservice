@@ -109,7 +109,7 @@ public class LicenseService {
     public License getLicense(String organizationId, String licenseId, String clientType) {
         final License license = licenseRepository.findByOrganizationIdAndLicenseId(organizationId, licenseId);
         final Organization organization = retrieveOrgInfo(organizationId, clientType);
-        if (organization != null) {
+        if (organization != null && license != null) {
             log.info("organization:{}", organization.getName());
             license.setOrganizationName(organization.getName());
         }

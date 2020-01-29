@@ -14,6 +14,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
                 // delete 需要 admin 角色
                 .antMatchers(HttpMethod.DELETE, "/v1/organizations/**").hasRole("ADMIN")
                 .anyRequest()
-                .authenticated();
+                .permitAll();
+//                .authenticated();
     }
 }

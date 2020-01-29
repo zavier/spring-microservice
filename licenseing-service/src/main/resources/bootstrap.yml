@@ -16,3 +16,5 @@ spring:
         binder:
           zkNodes: 182.61.133.92:2181
           brokers: 114.67.66.81:9092
+  zipkin:
+    baseUrl: http://localhost:9411

@@ -17,8 +17,11 @@ import java.util.List;
 public class OrganizationDiscoveryClient {
     private final DiscoveryClient discoveryClient;
 
-    public OrganizationDiscoveryClient(DiscoveryClient discoveryClient) {
+    private final OrganizationRestTemplate organizationRestTemplate;
+
+    public OrganizationDiscoveryClient(DiscoveryClient discoveryClient, OrganizationRestTemplate organizationRestTemplate) {
         this.discoveryClient = discoveryClient;
+        this.organizationRestTemplate = organizationRestTemplate;
     }
 
     public Organization getOrganization(String organizationId) {
@@ -29,6 +32,10 @@ public class OrganizationDiscoveryClient {
         }
         final String serviceUri = String.format("%s/v1/organizations/%s", instances.get(0).getUri().toASCIIString(), organizationId);
         final ResponseEntity<Organization> restExchange = restTemplate.exchange(serviceUri, HttpMethod.GET, null, Organization.class, organizationId);
+
+        // 另一种调用方式，此种方式 spring cloud sleuth 会自动传递关联ID到下一个系统
+        organizationRestTemplate.getOrganization(organizationId);
+
         return restExchange.getBody();
     }
 }

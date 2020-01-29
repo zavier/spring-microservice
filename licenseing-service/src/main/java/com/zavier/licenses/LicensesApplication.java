@@ -1,5 +1,6 @@
 package com.zavier.licenses;
 
+import brave.sampler.Sampler;
 import com.zavier.licenses.model.OrganizationChangeModel;
 import com.zavier.licenses.utils.UserContextInterceptor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,9 +16,6 @@ import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.cloud.stream.messaging.Sink;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
-import org.springframework.security.oauth2.client.OAuth2ClientContext;
-import org.springframework.security.oauth2.client.OAuth2RestTemplate;
-import org.springframework.security.oauth2.client.resource.OAuth2ProtectedResourceDetails;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
@@ -52,8 +50,14 @@ public class LicensesApplication {
 		return template;
 	}
 
+	// 监听事件
 	@StreamListener(Sink.INPUT)
 	public void loggerSink(OrganizationChangeModel orgChange) {
 		log.info("Received an event for organization id {}", orgChange.getOrgId());
+	}
+
+	@Bean
+	public Sampler defaultSampler() {
+		return Sampler.ALWAYS_SAMPLE;
 	}
 }
