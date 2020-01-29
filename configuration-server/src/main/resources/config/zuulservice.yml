@@ -1,0 +1,18 @@
+zuul:
+  ignored-services: '*'
+  prefix: /api
+  routes:
+    organizationservice: /organization/**
+    licensingservice: /licensing/**
+    # 静态服务
+    licensestatic:
+      path: /licensestatic/**
+      url: http://licenseservice-static:8081
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 2500

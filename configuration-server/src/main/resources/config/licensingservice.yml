@@ -17,7 +17,7 @@ spring:
     driverClassName: "com.mysql.jdbc.Driver"
     url: "jdbc:mysql://114.67.66.81:3306/shop"
     username: "root"
-    password: "{cipher}9b56629e4a048e5fe9ef97c7d051db122e8f3d1827c48da3cffe3d75817140e9"
+    password: "{cipher}4aee9542ab85cf039814fd611d4887316b4216f1a1d6c66d1f004dabe14d7944"
     testWhileIdle: "true"
     validatingQuery: "select 1"
 

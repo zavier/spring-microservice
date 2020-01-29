@@ -10,4 +10,4 @@ spring:
     config:
       server:
         native:
-          searchLocations: file:///Users/zhengwei/code/java/spring-microservice/configuration-server/src/main/resources/licensingservice
+          searchLocations: file:///Users/zhengwei/code/java/spring-microservice/configuration-server/src/main/resources/config
