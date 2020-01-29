@@ -7,6 +7,7 @@ import com.zavier.licenses.config.ServiceConfig;
 import com.zavier.licenses.model.License;
 import com.zavier.licenses.model.Organization;
 import com.zavier.licenses.repository.LicenseRepository;
+import com.zavier.licenses.utils.UserContextHolder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -66,6 +67,7 @@ public class LicenseService {
             }
     )
     public List<License> getLicensesByOrg(String organizationId) {
+        log.info("userContext:{}", UserContextHolder.getContext().toString());
         // 随机超时，测试 Hystrix
         randomlyRunLong();
         return licenseRepository.findByOrganizationId(organizationId);
